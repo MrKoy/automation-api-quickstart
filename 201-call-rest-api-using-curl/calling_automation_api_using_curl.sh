@@ -10,7 +10,8 @@ curl_params=-k                                                   # Out Of the Bo
 login=$(curl $curl_params -H "Content-Type: application/json" -X POST -d "{\"username\":\"$user\",\"password\":\"$password\"}"   "$endpoint/session/login" )
 echo $login
 
-token=$(echo ${login##*token\":\"} | cut -d "\"" -f 1)
+token=$(echo ${login##*token\" : \"} | cut -d '"' -f 1)
+
 echo token=$token
 
 # using curl to GET information
